@@ -28,8 +28,8 @@ export default function Post({ title, author_fullname, num_comments, ups, create
     const updated = new Date(created * 1000);
     const timeago = fromNow(updated);
     const onCardHandler = () => {
-        console.log('URL', permalink);
-        console.log(history);
+        // console.log('URL', permalink);
+        // console.log(history);
         history.push("/postdetails" + permalink);
     }
     return (
@@ -61,7 +61,7 @@ export default function Post({ title, author_fullname, num_comments, ups, create
                                 startIcon={<Comment />}
                             >
                                 {num_comments} comments
-                        </Button>
+                            </Button>
                         </CardActions>
                     </Grid>
                 </Grid>

@@ -6,7 +6,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
 import Logo from './../../assets/images/logo.svg'
-import { withRouter } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
     grow: {
@@ -58,9 +58,9 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const Header = ({ value, onChange, history }) => {
+const Header = ({ value, onChange }) => {
     const classes = useStyles();
-
+    const history = useHistory();
     return (
         <div className={classes.grow}>
             <AppBar position="static">
@@ -98,4 +98,4 @@ const Header = ({ value, onChange, history }) => {
     );
 }
 
-export default withRouter(Header);
+export default Header;
