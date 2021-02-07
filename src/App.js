@@ -3,16 +3,16 @@ import {
   Switch,
   Route
 } from "react-router-dom";
-import { Posts } from './pages';
+import { Posts, PostDetails } from './pages';
 
-function App() {
+function App({ history }) {
   return (
     <Router>
       <Switch>
-        <Route path="/posts">
-          <Posts />
+        <Route path="/postdetails/:detail">
+          <PostDetails />
         </Route>
-        <Route path="/r/:name">
+        <Route path="/">
           <Posts />
         </Route>
       </Switch>
