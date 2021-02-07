@@ -13,6 +13,6 @@ The application is developed only for learning and exploring the Reddit API
 
 # Infite Scroll:
 
-Thank you Kyle, I have inspired by your video for the infite scroll solution.
+Thank you Kyle, I have learnt and inspired by your video for the infite scroll solution.
 
 https://www.youtube.com/watch?v=NZKUirTtxcg
