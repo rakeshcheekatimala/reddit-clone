@@ -6,6 +6,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
 import Logo from './../../assets/images/logo.svg'
+import { withRouter } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
     grow: {
@@ -57,7 +58,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function PrimarySearchAppBar() {
+const Header = ({ value, onChange, history }) => {
     const classes = useStyles();
 
     return (
@@ -65,7 +66,7 @@ export default function PrimarySearchAppBar() {
             <AppBar position="static">
                 <Toolbar>
                     <Grid container alignItems="center">
-                        <Grid container item xs={2} md={3} alignItems="center">
+                        <Grid container item xs={2} md={3} alignItems="center" onClick={() => history.push("/")}>
                             <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
                                 <Avatar alt="Logo" src={Logo} />
                             </IconButton>
@@ -84,6 +85,8 @@ export default function PrimarySearchAppBar() {
                                         root: classes.inputRoot,
                                         input: classes.inputInput,
                                     }}
+                                    value={value}
+                                    onChange={onChange}
                                     inputProps={{ 'aria-label': 'search' }}
                                 />
                             </div>
@@ -94,3 +97,5 @@ export default function PrimarySearchAppBar() {
         </div>
     );
 }
+
+export default withRouter(Header);

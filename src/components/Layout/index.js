@@ -7,10 +7,10 @@ import { Container } from '@material-ui/core';
 * @function Layout for the whole application
 **/
 
-const Layout = ({ children }) => {
+const Layout = ({ children, value, onChange }) => {
     return (
         <>
-            <Header />
+            <Header value={value} onChange={onChange} />
             <br />
             <Container>
                 {children}
