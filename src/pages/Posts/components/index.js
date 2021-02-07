@@ -24,7 +24,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function PostBar({ selectedValue, onClick }) {
     const classes = useStyles();
-    console.log('....selectedValue', selectedValue === 'hot')
     return (
         <Grid container className={classes.automargin} style={{ marginBottom: '1rem' }}>
             <Grid item xs={12} md={6} className={classes.action__buttons}>
