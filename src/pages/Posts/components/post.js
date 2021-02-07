@@ -29,7 +29,6 @@ export default function Post({ title, author_fullname, num_comments, ups }) {
             <Grid container>
                 <Grid item container direction="column" xs={1} alignItems="center" justify="center">
                     <ArrowUpward />
-
                     <Typography variant="body2" color="textSecondary" component="h2">{abbreviateNumber(ups)}</Typography>
                     <ArrowDownward />
                 </Grid>
@@ -53,7 +52,7 @@ export default function Post({ title, author_fullname, num_comments, ups }) {
                             startIcon={<Comment />}
                         >
                             {num_comments} comments
-                </Button>
+                        </Button>
                     </CardActions>
                 </Grid>
             </Grid>

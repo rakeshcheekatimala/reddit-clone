@@ -27,10 +27,10 @@ export default function PostBar() {
                     <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="hot">
                         <Whatshot />
                     </IconButton>
-                    <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+                    <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="new">
                         <FiberNew />
                     </IconButton>
-                    <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+                    <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="top">
                         <BarChart />
                     </IconButton>
                 </Toolbar>
