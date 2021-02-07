@@ -13,7 +13,7 @@ export default function usePostSearch(query, pageNumber, selectedValue) {
     useEffect(() => {
         setPosts([])
         setAfter(null);
-    }, [query])
+    }, [query, selectedValue])
 
 
     useEffect(() => {
