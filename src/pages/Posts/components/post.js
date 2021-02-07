@@ -32,7 +32,7 @@ export default function Post({ title, author_fullname, num_comments, ups }) {
                     <Typography variant="body2" color="textSecondary" component="h2">{abbreviateNumber(ups)}</Typography>
                     <ArrowDownward />
                 </Grid>
-                <Grid item>
+                <Grid item xs={11}>
                     <CardContent>
                         <Grid item>
                             <Typography gutterBottom variant="subtitle1" component="h2">
