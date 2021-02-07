@@ -9,6 +9,7 @@ import { Comment } from '@material-ui/icons';
 import { abbreviateNumber } from './../../../utils';
 import { Grid } from '@material-ui/core';
 import { ArrowUpward, ArrowDownward } from '@material-ui/icons';
+import { fromNow } from './../../../utils'
 
 const useStyles = makeStyles({
     media: {
@@ -21,9 +22,10 @@ const useStyles = makeStyles({
 * @function Post which describes the title,votes,comments,etc.
 **/
 
-export default function Post({ title, author_fullname, num_comments, ups }) {
+export default function Post({ title, author_fullname, num_comments, ups, created }) {
     const classes = useStyles();
-
+    const updated = new Date(created * 1000);
+    const timeago = fromNow(updated);
     return (
         <Card>
             <Grid container>
@@ -36,7 +38,7 @@ export default function Post({ title, author_fullname, num_comments, ups }) {
                     <CardContent>
                         <Grid item>
                             <Typography gutterBottom variant="subtitle1" component="h2">
-                                Posted by {author_fullname}
+                                Posted by <b>{author_fullname}</b> {timeago}
                             </Typography>
                             <Typography variant="body2" color="textSecondary" component="h2">
                                 {title}

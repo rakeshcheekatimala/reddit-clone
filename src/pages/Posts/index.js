@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import Post from './components/post';
 import { Grid, Typography } from '@material-ui/core';
 import { getSubRedditData } from './../../api';
+
 /**
 * @author
 * @function returns the list of Posts 
