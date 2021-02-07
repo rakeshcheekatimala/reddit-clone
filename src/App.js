@@ -5,7 +5,7 @@ import {
 } from "react-router-dom";
 import { Posts, PostDetails } from './pages';
 
-function App({ history }) {
+function App() {
   return (
     <Router>
       <Switch>

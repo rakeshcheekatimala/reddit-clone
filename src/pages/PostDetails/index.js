@@ -23,10 +23,11 @@ const PostDetails = (props) => {
                 //console.log('handle', handle, 'SUBREDDIT_API_URL', SUBREDDIT_API_URL);
                 let URL = `${SUBREDDIT_API_URL}${handle}.json`;
                 let results = await axios.get(URL);
-                console.log(results, 'results');
                 if (results.status === 200) {
-                    setPost(results.data[0].data.children[0]);
-                    setIsLoaded(true);
+                    if (results.data[0]) {
+                        setPost(results.data[0].data.children[0]);
+                        setIsLoaded(true);
+                    }
                 }
             }
             catch (e) {
@@ -37,7 +38,6 @@ const PostDetails = (props) => {
         loadPostDetails();
     }, [urlHandle]);
 
-    console.log('postdertails', post);
     return (
         <Layout>
             {isLoaded ? (<Grid container spacing={3}>
