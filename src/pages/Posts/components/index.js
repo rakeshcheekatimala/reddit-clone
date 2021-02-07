@@ -7,6 +7,8 @@ import { Whatshot, FiberNew, BarChart } from '@material-ui/icons';
 const useStyles = makeStyles((theme) => ({
     menuButton: {
         marginRight: theme.spacing(2),
+        marginTop: '0.5rem',
+        marginBottom: '0.5rem'
     },
     action__buttons: {
         border: '2px solid #ccc',
@@ -14,27 +16,31 @@ const useStyles = makeStyles((theme) => ({
     automargin: {
         margin: 'auto',
         justifyContent: 'center'
+    },
+    active: {
+        background: 'teal',
+        color: '#fff'
     }
 }));
 
-export default function PostBar() {
+export default function PostBar({ selectedValue, onClick }) {
     const classes = useStyles();
 
     return (
-        <Grid container className={classes.automargin}>
+        <Grid container className={classes.automargin} style={{ marginBottom: '1rem' }}>
             <Grid item xs={12} md={6} className={classes.action__buttons}>
                 <Toolbar className={classes.automargin}>
-                    <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="hot">
+                    <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="hot" onClick={(event) => onClick(event, 'hot')}>
                         <Whatshot />
                     </IconButton>
-                    <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="new">
+                    <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="new" onClick={(event) => onClick(event, 'new')}>
                         <FiberNew />
                     </IconButton>
-                    <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="top">
+                    <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="top" onClick={(event) => onClick(event, 'top')}>
                         <BarChart />
                     </IconButton>
                 </Toolbar>
             </Grid>
-        </Grid>
+        </Grid >
     );
 }

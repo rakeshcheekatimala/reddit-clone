@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState, useRef, useCallback } from 'react';
 import PostBar from './components/index';
 import { Layout } from './../../components';
-import { useParams } from "react-router-dom";
 import Post from './components/post';
 import { Grid, Typography } from '@material-ui/core';
-import { getSubRedditData } from './../../api';
+import usePosts from './../../hooks/usePosts';
+import { withRouter } from 'react-router-dom';
 
 /**
 * @author
@@ -12,41 +12,59 @@ import { getSubRedditData } from './../../api';
 **/
 
 const Posts = (props) => {
-    let query = useParams();
-    let [posts, setPosts] = useState([]);
-    let [isError, setIsError] = useState(false);
-    useEffect(() => {
+    const [query, setQuery] = useState('');
+    const [pageNumber, setPageNumber] = useState(1);
+    const [selectedValue, setSelectedValue] = useState('hot');
+    console.log('posts....', props)
+    const {
+        posts,
+        hasMore,
+        loading,
+        error
+    } = usePosts(query, pageNumber, selectedValue)
 
-        const loadData = async () => {
-            try {
-                const response = await getSubRedditData(query.name);
-                if (response.status === 200) {
-                    const { data } = response;
-                    setPosts(data.data.children);
-                }
+    const observer = useRef()
+    const lastpostElementRef = useCallback(node => {
+        if (loading) return
+        if (observer.current) observer.current.disconnect()
+        observer.current = new IntersectionObserver(entries => {
+            if (entries[0].isIntersecting && hasMore) {
+                setPageNumber(prevPageNumber => prevPageNumber + 1); // change the pageNumber once the lastpostElement is reached
             }
-            catch (e) {
-                setPosts([]);
-                setIsError(true);
-            }
-        }
+        })
+        if (node) observer.current.observe(node)
+    }, [loading, hasMore])
 
-        loadData();
-    }, [])
+    const handleSearch = (e) => {
+        setQuery(e.target.value)
+        setPageNumber(null)
+    }
+
+    const onClick = (e, value) => {
+        setSelectedValue(value);
+    }
+
     return (
-        <Layout>
-            <PostBar />
+        <Layout value={query} onChange={handleSearch}>
+            <PostBar onClick={onClick} selectedValue={selectedValue} />
             <Grid container spacing={3}>
                 {
-                    posts.map(post => {
-                        return <Grid item key={post.data.title} xs={12}><Post {...post.data} /></Grid>
+                    posts.map((post, index) => {
+
+                        if (posts.length === index + 1) {
+                            return <Grid item key={index} xs={12} ref={lastpostElementRef}><Post {...post.data} history={props.history} /></Grid>
+                        } else {
+                            return <Grid item key={index} xs={12} ><Post {...post.data} history={props.history} /></Grid>
+                        }
                     })
                 }
-                {isError && <Typography>Please contact administrator as the server is down...</Typography>}
             </Grid>
-        </Layout>
+            <Grid container alignItems="center" justify="center" style={{ marginTop: '1rem' }}>
+                {loading && <Typography variant="h5" component="h2">Loading...</Typography>}
+            </Grid>
+            { error && <Typography>Sorry, Something is not working. Please contact administrator as the server is down...</Typography>}
+        </Layout >
     )
-
 }
 
-export default Posts
+export default withRouter(Posts);
