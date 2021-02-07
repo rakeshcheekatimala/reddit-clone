@@ -15,7 +15,7 @@ const Posts = (props) => {
     const [query, setQuery] = useState('');
     const [pageNumber, setPageNumber] = useState(1);
     const [selectedValue, setSelectedValue] = useState('hot');
-    console.log('posts....', props)
+
     const {
         posts,
         hasMore,

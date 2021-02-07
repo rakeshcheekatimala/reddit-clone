@@ -18,9 +18,7 @@ export default function usePostSearch(query, pageNumber, selectedValue) {
 
     useEffect(() => {
         //console.log('inside useEffect,,,,,', selectedValue);
-        if (query === '') {
-            query = 'all'; //default load everything if nothing is seached
-        }
+        query = query || 'all'; // default set to all if not empty
         setLoading(true);
         setError(false);
         let cancel;
@@ -38,7 +36,6 @@ export default function usePostSearch(query, pageNumber, selectedValue) {
             })
             setHasMore(res.data.data.after !== null); // this will be the used to know and decide whether there are more items 
             setLoading(false);
-            setAfter(res.data.data.after);
         }).catch(e => {
             if (axios.isCancel(e)) return
             setError(true)

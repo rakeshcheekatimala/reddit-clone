@@ -40,9 +40,9 @@ const PostDetails = (props) => {
     console.log('postdertails', post);
     return (
         <Layout>
-            {isLoaded && (<Grid container spacing={3}>
+            {isLoaded ? (<Grid container spacing={3}>
                 <Grid item key={post.title} xs={12} ><PostDetail {...post.data} /></Grid>
-            </Grid>)}
+            </Grid>) : <h2>Loading...</h2>}
         </Layout >
     )
 
