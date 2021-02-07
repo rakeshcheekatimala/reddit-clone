@@ -18,25 +18,24 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: 'center'
     },
     active: {
-        background: 'teal',
-        color: '#fff'
+        color: 'red'
     }
 }));
 
 export default function PostBar({ selectedValue, onClick }) {
     const classes = useStyles();
-
+    console.log('....selectedValue', selectedValue === 'hot')
     return (
         <Grid container className={classes.automargin} style={{ marginBottom: '1rem' }}>
             <Grid item xs={12} md={6} className={classes.action__buttons}>
                 <Toolbar className={classes.automargin}>
-                    <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="hot" onClick={(event) => onClick(event, 'hot')}>
+                    <IconButton edge="start" className={classes.menuButton} color={selectedValue === 'hot' ? 'secondary' : 'inherit'} aria-label="hot" onClick={(event) => onClick(event, 'hot')}>
                         <Whatshot />
                     </IconButton>
-                    <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="new" onClick={(event) => onClick(event, 'new')}>
+                    <IconButton edge="start" className={classes.menuButton} color={selectedValue === 'new' ? 'secondary' : 'inherit'} aria-label="new" onClick={(event) => onClick(event, 'new')}>
                         <FiberNew />
                     </IconButton>
-                    <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="top" onClick={(event) => onClick(event, 'top')}>
+                    <IconButton edge="start" className={classes.menuButton} color={selectedValue === 'top' ? 'secondary' : 'inherit'} aria-label="top" onClick={(event) => onClick(event, 'top')}>
                         <BarChart />
                     </IconButton>
                 </Toolbar>
